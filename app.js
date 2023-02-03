@@ -1,6 +1,7 @@
 const optionContainer = document.querySelector(".option-container");
 const flipButton = document.querySelector("#flip-button");
 
+//option chooseing
 let angle = 0;
 function flip() {
   const optionShips = Array.from(optionContainer.children);
@@ -17,4 +18,7 @@ function flip() {
     (optionShip) => (optionShip.style.transform = `rotate(${angle}deg)`)
   );
 }
+
+//Creating boards
+
 flipButton.addEventListener("click", flip);
