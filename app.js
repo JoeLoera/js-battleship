@@ -109,35 +109,35 @@ function addShipPiece(ship) {
       shipBlock.classList.add(ship.name);
       shipBlock.classList.add("taken");
     });
+  } else {
+    addShipPiece(ship);
   }
 }
 
 ships.forEach((ship) => addShipPiece(ship));
 
-// let valid;
+//Drag player ships
+let draggedShip;
+const optionShips = Array.from(optionContainer.children);
+optionShips.forEach((optionShip) =>
+  optionShip.addEventListener("dragstart", dragstart)
+);
 
-// if (isHorizontal) {
-//   shipBlocks.every(
-//     (_shipBlock, index) =>
-//       (valid =
-//         shipBlocks[0].id % width !== width - (shipBlocks.length - (index + 1)))
-//   );
-// } else {
-//   shipBlocks.every(
-//     (_shipBlock, index) => (valid = shipBlocks[0].id < 90 + (width * index + 1))
-//   );
-// }
+const allPlayerBlocks = document.querySelectorAll("#player div");
+allPlayerBlocks.forEach((playerBlock) => {
+  playerBlock.addEventListener("dragover", dragOver);
+  playerBlock.addEventListener("drop", dropShip);
+});
 
-// const notTaken = shipBlocks.every(
-//   (shipBlock) => !shipBlock.classList.contains("taken")
-// );
+function dragStart(e) {
+  draggedShip = e.target;
+}
 
-// if (valid && notTaken) {
-//   shipBlocks.forEach((shipBlock) => {
-//     shipBlock.classList.add(ship.name);
-//     shipBlock.classList.add("taken");
-//   });
-// } else {
-// }
+function dragOver(e) {
+  e.preventDefault();
+}
 
-// ships.forEach((ship) => addShipPiece(ship));
+function dropShip() {
+  const startId = e.target.id;
+  const ship = ships[draggedShip.id];
+}
